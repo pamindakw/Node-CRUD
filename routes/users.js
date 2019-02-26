@@ -34,7 +34,7 @@ router.get('/', function(req, res_, next) {
         req.session.username = username;
         res_.redirect('/');
       } else {
-        res_.send('Incorrect Username and/or Password!');
+        res_.send('Incorrect Username or Password!');
       }
     });
   } else {
