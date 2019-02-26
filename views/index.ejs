@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel="shortcut icon" href='/images/icon.ico' />
-    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-    <script src='/javascripts/bootstrap.min.js' ></script>
-    <script src='/javascripts/popper.min.js' ></script>
-    <script src='/javascripts//jquery-3.3.1.slim.min.js' ></script>
-  </head>
-  <body>
-  <div class="container">
-      <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span><%= title %> System</h1>
-        <p>This is <%= title %></p>
-        <p>Login or Register with:</p>
 
-        <a href="/users/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
-        <a href="/users/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
-      </div>
+<head>
+  <title><%= title %></title>
+  <link rel="shortcut icon" href='/images/icon.ico' />
+  <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+  <script src='/javascripts/bootstrap.min.js'></script>
+  <script src='/javascripts/popper.min.js'></script>
+  <script src='/javascripts//jquery-3.3.1.slim.min.js'></script>
+</head>
+
+<body>
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1><span class="fa fa-lock"></span><%= title %> System</h1>
+    <p>This is <%= title %></p>
+    <p>Login or Register with:</p>
+
+    <a href="/users/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
+    <a href="/users/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
   </div>
-  </body>
+</div>
+</body>
+
 </html>

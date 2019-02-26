@@ -4,10 +4,12 @@ var mysql = require('mysql');
 
 /* GET users listing. */
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Node-Crud' });
+  res.render('login', {
+    title: 'Node-Crud'
+  });
 });
 
-//db authenticate
+/* Database authenticate. */
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -16,12 +18,12 @@ var con = mysql.createConnection({
 });
 
 con.connect(function(err) {
-    if (err) {
-      console.log("Error connecting!");
-      return;
-    }
-      console.log("Connected!");
-  });
+  if (err) {
+    console.log("Error connecting!");
+    return;
+  }
+  console.log("Connected!");
+});
 
 router.get('/', function(req, res_, next) {
   var username = req.query['name'];
@@ -32,7 +34,7 @@ router.get('/', function(req, res_, next) {
       if (res.length > 0) {
         req.session.loggedin = true;
         req.session.username = username;
-        res_.redirect('/');
+        res_.render('profile', {title: username});
       } else {
         res_.send('Incorrect Username or Password!');
       }
