@@ -4,9 +4,11 @@ var mysql = require('mysql');
 
 /* GET users listing. */
 router.get('/login', function(req, res, next) {
-  res.render('login', {
-    title: 'Node-Crud'
-  });
+  res.render('login', { title: 'Node-Crud' });
+});
+
+router.get('/signup', function(req, res, next) {
+  res.render('signup', { title: 'Node-Crud' });
 });
 
 /* Database authenticate. */
@@ -25,6 +27,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
+/* Login Process */
 router.get('/', function(req, res_, next) {
   var username = req.query['name'];
   var password = req.query['pass'];
@@ -34,7 +37,7 @@ router.get('/', function(req, res_, next) {
       if (res.length > 0) {
         req.session.loggedin = true;
         req.session.username = username;
-        res_.render('profile', {title: username});
+        res_.render('profile', { title: username });
       } else {
         res_.send('Incorrect Username or Password!');
       }
@@ -44,6 +47,17 @@ router.get('/', function(req, res_, next) {
     req.session.username = username;
     res_.send('Please enter Username and Password!');
   }
+});
+
+/* Signup process */
+router.get('/sign', function(req, res_) {
+  var num = req.query['no1'];
+  var username = req.query['name1'];
+  var password = req.query['pass1'];
+  con.query('INSERT INTO login (No, Username, Password) VALUES (?,?,?)', [num, username, password], function(err, res) {
+    if (err) throw err;
+    res_.send('Just one user added.');
+  });
 });
 
 module.exports = router;

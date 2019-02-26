@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel='shortcut icon' href='/images/icon.ico' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <script src='/javascripts/bootstrap.min.js'></script>
+    <script src='/javascripts/popper.min.js'></script>
+    <script src='/javascripts/jquery-3.3.1.slim.min.js'></script>
+</head>
+
+<body>
+<div class="container">
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %> Signup System</p><br>
+
+    <form method="get" action="/users/sign">
+        <label>No : </label><label><input type="text" name="no1" /></label><br><br>
+        <label>Username : </label><label><input type="text" name="name1" /></label><br><br>
+        <label>Password : </label><label><input type="text" name="pass1" /></label><br><br>
+        <input class="btn btn-primary" type="submit" value="Add">
+        <a class="btn btn-primary" href="login">login</a>
+    </form>
+</div>
+</body>
+
+</html>
