@@ -10,7 +10,7 @@ router.get('/login', function(req, res, next) {
 router.get('/signup', function(req, res, next) {
   con.query('SELECT * FROM login ',function (err,rows) {
     if (err) throw err;
-    //console.log(rows);
+
     res.render('signup', { title: 'Node-Crud' }, { users: rows });
   })
 });
