@@ -8,7 +8,11 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/signup', function(req, res, next) {
-  res.render('signup', { title: 'Node-Crud' });
+  con.query('SELECT * FROM login ',function (err,rows) {
+    if (err) throw err;
+    //console.log(rows);
+    res.render('signup', { title: 'Node-Crud' }, { users: rows });
+  })
 });
 
 /* Database authenticate. */
@@ -67,10 +71,11 @@ router.get('/sign', function(req, res_) {
   var num = req.query['no1'];
   var username = req.query['name1'];
   var password = req.query['pass1'];
-  con.query('INSERT INTO login (No, Username, Password) VALUES (?,?,?)', [num, username, password], function(err, res) {
+  con.query('INSERT INTO login (No, Username, Password) VALUES (?,?,?)', [num, username, password], function(err) {
     if (err) throw err;
     res_.send('Just one user added.');
   });
+
 });
 
 module.exports = router;
