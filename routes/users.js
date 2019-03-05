@@ -49,7 +49,20 @@ router.get('/', function(req, res_, next) {
   }
 });
 
-/* Signup process */
+/* Logout Process */
+router.get('/logout',function(req,res){
+  req.session.destroy(function(err){
+    if(err){
+      console.log(err);
+    }
+    else
+    {
+      res.redirect('/');
+    }
+  });
+});
+
+  /* Signup process */
 router.get('/sign', function(req, res_) {
   var num = req.query['no1'];
   var username = req.query['name1'];
