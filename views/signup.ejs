@@ -38,10 +38,10 @@
         <% for(var i=0; i < users.length; i++) { %>
 
         <tr>
-            <th scope="row">1</th>
             <td><%= users[i].No %></td>
             <td><%= users[i].Username %></td>
             <td><%= users[i].Password %></td>
+            <td><a class="btn btn-primary" href="/users/edit/<%= users[i].No %>">Edit</a> <a class="btn btn-primary" href="/users/del/<%= users[i].No %>">Delete</a></td>
             <% } %>
         </tr>
         </tbody>

@@ -3,16 +3,23 @@ var router = express.Router();
 var mysql = require('mysql');
 
 /* GET users listing. */
-router.get('/login', function(req, res, next) {
+router.get('/login', function(req, res) {
   res.render('login', { title: 'Node-Crud' });
 });
 
-router.get('/signup', function(req, res, next) {
-  con.query('SELECT * FROM login ',function (err,rows) {
-    if (err) throw err;
+router.get('/signup', function(req, res) { // View
+    con.query('SELECT * FROM login',function (err,rows) {
+        if (err) throw err;
+        res.render('signup', { title: 'Node-Crud' , users: rows });
+    })
+});
 
-    res.render('signup', { title: 'Node-Crud' }, { users: rows });
-  })
+router.get('/edit/:no', function(req, res) {
+    var num = req.params.no;
+    con.query('SELECT * FROM login WHERE No = ?', [num], function(err, rows) {
+        if (err) throw err;
+        res.render('edit', { title: 'Node-Crud' , usersdata: rows [0] });
+    })
 });
 
 /* Database authenticate. */
@@ -66,15 +73,37 @@ router.get('/logout',function(req,res){
   });
 });
 
-  /* Signup process */
+/* Signup process */
 router.get('/sign', function(req, res_) {
   var num = req.query['no1'];
   var username = req.query['name1'];
   var password = req.query['pass1'];
   con.query('INSERT INTO login (No, Username, Password) VALUES (?,?,?)', [num, username, password], function(err) {
     if (err) throw err;
-    res_.send('Just one user added.');
+      res_.redirect('/users/signup');
   });
+
+});
+
+/* Delete process */
+router.get('/del/:no', function(req, res) {
+    var num = req.params.no;
+    con.query('DELETE FROM login WHERE No = ?', [num], function(err) {
+        if (err) throw err;
+        res.redirect('/users/signup');
+    });
+
+});
+
+/* Update process */
+router.get('/edit', function(req, res) {
+    var no = req.params.no;
+    var username = req.query['name1'];
+    var password = req.query['pass1'];
+    con.query('UPDATE login SET (Username, Password) VALUES (?,?) WHERE No = ?', [username ,password, no], function(err) {
+        if (err) throw err;
+        res.redirect('/users/signup');
+    });
 
 });
 
