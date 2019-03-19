@@ -23,6 +23,7 @@ router.get('/edit/:no', function(req, res) {
     })
 });
 
+
 /* Database authenticate. */
 var con = mysql.createConnection({
   host: "localhost",
@@ -38,6 +39,7 @@ con.connect(function(err) {
   }
   console.log("Connected!");
 });
+
 
 /* Login Process */
 router.get('/', function(req, res_) {
@@ -61,6 +63,7 @@ router.get('/', function(req, res_) {
   }
 });
 
+
 /* Logout Process */
 router.get('/logout',function(req, res){
   req.session.destroy(function(err){
@@ -73,6 +76,7 @@ router.get('/logout',function(req, res){
     }
   });
 });
+
 
 /* Signup process */
 router.get('/sign', function(req, res) {
