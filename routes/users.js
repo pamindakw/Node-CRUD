@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var _ = require("lodash"); // lodash code
 
 /* GET users listing. */
 router.get('/login', function(req, res) {
@@ -39,7 +40,7 @@ con.connect(function(err) {
 });
 
 /* Login Process */
-router.get('/', function(req, res_, next) {
+router.get('/', function(req, res_) {
   var username = req.query['name'];
   var password = req.query['pass'];
 
@@ -61,7 +62,7 @@ router.get('/', function(req, res_, next) {
 });
 
 /* Logout Process */
-router.get('/logout',function(req,res){
+router.get('/logout',function(req, res){
   req.session.destroy(function(err){
     if(err){
       console.log(err);
@@ -74,16 +75,21 @@ router.get('/logout',function(req,res){
 });
 
 /* Signup process */
-router.get('/sign', function(req, res_) {
+router.get('/sign', function(req, res) {
   var num = req.query['no1'];
   var username = req.query['name1'];
   var password = req.query['pass1'];
-  con.query('INSERT INTO login (No, Username, Password) VALUES (?,?,?)', [num, username, password], function(err) {
-    if (err) throw err;
-      res_.redirect('/users/signup');
-  });
 
+  if (!(num.length && username.length && password.length)) /*Validation*/ {
+            res.redirect('/users/signup');
+    } else {
+            con.query('INSERT INTO login (No, Username, Password) VALUES (?,?,?)', [num, username, password], function(err) {
+            if (err) throw err;
+            res.redirect('/users/signup');
+      });
+    }
 });
+
 
 /* Delete process */
 router.get('/del/:no', function(req, res) {
@@ -96,13 +102,13 @@ router.get('/del/:no', function(req, res) {
 });
 
 /* Update process */
-router.get('/edit', function(req, res) {
+router.get('/edi/:no', function(req, res_) {
     var no = req.params.no;
     var username = req.query['name1'];
     var password = req.query['pass1'];
-    con.query('UPDATE login SET (Username, Password) VALUES (?,?) WHERE No = ?', [username ,password, no], function(err) {
+    con.query('UPDATE login SET Username = ? , Password = ? Where No = ?', [username ,password, no], function(err) {
         if (err) throw err;
-        res.redirect('/users/signup');
+        res_.redirect('/users/signup');
     });
 
 });

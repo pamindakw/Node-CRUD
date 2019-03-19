@@ -1,27 +1,27 @@
-<!DOCTYPE html>
-<html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<!------ Include the above in your HEAD tag ---------->
 
-<head>
-    <title><%= title %></title>
-    <link rel='shortcut icon' href='/images/icon.ico' />
-    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-    <script src='/javascripts/bootstrap.min.js'></script>
-    <script src='/javascripts/popper.min.js'></script>
-    <script src='/javascripts/jquery-3.3.1.slim.min.js'></script>
-</head>
-
-<body>
-<div class="container">
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %> System</p><br>
-
-    <form method="get" action="/users">
-        <label>Username : </label><label><input type="text" name="name" /></label><br><br>
-        <label>Password : </label><label><input type="password" name="pass" /></label><br><br>
-        <input class="btn btn-primary" type="submit" value="login">
-        <a class="btn btn-primary" href="signup">signup</a>
-    </form>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3><%= title %></h3>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Email *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Login" />
+                </div>
+                <div class="form-group">
+                    <a href="#" class="ForgetPwd">Forget Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-</body>
-
-</html>
