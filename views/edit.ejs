@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel='shortcut icon' href='/images/icon.ico' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <script src='/javascripts/bootstrap.min.js'></script>
+    <script src='/javascripts/popper.min.js'></script>
+    <script src='/javascripts/jquery-3.3.1.slim.min.js'></script>
+</head>
+
+<body>
+<div class="container">
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %> Signup System</p><br>
+
+    <% { if ( usersdata ) %>
+    <form method="get" action="/users/edi/<%= usersdata.No %>">
+        <label>Username : </label><label><input type="text" name="name1" value="<%= usersdata.Username %>"/></label><br><br>
+        <label>Password : </label><label><input type="text" name="pass1" value="<%= usersdata.Password %>"/></label><br><br>
+        <input class="btn btn-primary" type="submit" value="Update">
+        <a class="btn btn-primary" href="/users/login">login</a>
+    </form>
+    <% } %>
+</div>
+<br><br>
+</body>
+
+</html>
